@@ -1,0 +1,3 @@
+[submodule "alignment-handbook"]
+	path = alignment-handbook
+	url = git@github.com:huggingface/alignment-handbook.git
