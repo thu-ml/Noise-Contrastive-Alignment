@@ -1,6 +1,6 @@
 [submodule "alignment-handbook"]
 	path = alignment-handbook
 	url = git@github.com:huggingface/alignment-handbook.git
-[submodule "trl"]
+[submodule "trl-lib"]
 	path = trl-lib
 	url = git@github.com:huggingface/trl.git

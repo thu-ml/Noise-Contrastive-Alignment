@@ -1,7 +1,7 @@
 # Code modified from 
 import torch
 import torch.nn.functional as F
-from trl.trl import DPOTrainer
+from trl import DPOTrainer
 from typing import Tuple
 from typing import Literal
 
@@ -10,7 +10,7 @@ class NCATrainer_pairwise(DPOTrainer):
     Implementation of the NCA algorithm in pairwise preference settings.
     """
 
-    def __init__(*args, loss_type: Literal["InfoNCA", "NCA"] = "InfoNCA", **kwargs):
+    def __init__(self, *args, loss_type: Literal["InfoNCA", "NCA"] = "InfoNCA", **kwargs):
         super().__init__(*args, loss_type=loss_type, **kwargs)
 
     def dpo_loss(

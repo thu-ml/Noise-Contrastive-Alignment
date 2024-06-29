@@ -39,9 +39,9 @@ from transformers import (
 from transformers.trainer_callback import TrainerCallback
 from transformers.trainer_utils import EvalLoopOutput
 
-from trl.trl.import_utils import is_peft_available, is_wandb_available
-from trl.trl.models import PreTrainedModelWrapper, create_reference_model
-from trl.trl.trainer.utils import disable_dropout_in_model, pad_to_length
+from trl.import_utils import is_peft_available, is_wandb_available
+from trl.models import PreTrainedModelWrapper, create_reference_model
+from trl.trainer.utils import disable_dropout_in_model, pad_to_length
 
 from data_utils import NCADataCollatorWithPadding
 
@@ -451,7 +451,9 @@ class NCATrainer(Trainer):
         A2_reward = (policy_A2_logps - reference_A2_logps) * self.beta
         A3_reward = (policy_A3_logps - reference_A3_logps) * self.beta
         # The definition of temperature_alpha here is different from that in the paper (temperature_alpha = 1 / paper_alpha)
-        rewards = torch.stack([batch["A0_score"],batch["A1_score"],batch["A2_score"],batch["A3_score"]],dim=-1) / self.temperature_alpha #<bz,4>
+        # rewards = torch.stack([batch["A0_score"],batch["A1_score"],batch["A2_score"],batch["A3_score"]],dim=-1) / self.temperature_alpha #<bz,4>
+        # +0.01 here ensures A0 has the highest reward even if r(A1) = r(A0). This is included merely to stay consistent with preference settings. Could be removed.
+        rewards = torch.stack([batch["A0_score"]+0.01,batch["A1_score"],batch["A2_score"],batch["A3_score"]], dim=-1) / self.temperature_alpha #<bz,4>
         softlabel = rewards.softmax(dim=-1) #<bz,4>
         model_rewards = torch.stack([A0_reward, A1_reward, A2_reward, A3_reward], dim=-1) #<bz,4>
 
@@ -549,8 +551,7 @@ class NCATrainer(Trainer):
     ):
         """Compute the NCA loss and other metrics for the given batch of inputs for train or test."""
         metrics = {}
-
-        # self.accelerator.empty_cache()# TODO
+        # TODO support arbitrary K option
         with torch.no_grad():
             if self.ref_model is None:
                 with self.accelerator.unwrap_model(self.model).disable_adapter():

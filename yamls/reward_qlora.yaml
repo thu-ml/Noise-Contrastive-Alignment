@@ -1,0 +1,60 @@
+# Model arguments
+model_name_or_path: HuggingFaceH4/mistral-7B-SFT-beta
+torch_dtype: bfloat16
+
+# LoRA arguments
+use_peft: true
+load_in_4bit: true
+lora_r: 16
+lora_alpha: 16
+lora_dropout: 0.05
+lora_target_modules:
+- q_proj
+- k_proj
+- v_proj
+- o_proj
+- gate_proj
+- up_proj
+- down_proj
+
+# Data training arguments
+
+dataset_mixer:
+  ChenDRAG/ultrafeedback_reward: 1.0
+dataset_splits:
+- train_prefs
+- test_prefs
+preprocessing_num_workers: 12
+
+# DPOTrainer arguments
+bf16: true
+beta: 0.01
+temperature_alpha: 0.0001
+do_eval: true
+evaluation_strategy: steps
+eval_steps: 200
+loss_type: NCA #
+gradient_accumulation_steps: 4
+gradient_checkpointing: true
+gradient_checkpointing_kwargs:
+  use_reentrant: false
+hub_model_id: zephyr-7b-NCA-qlora
+learning_rate: 5.0e-6
+log_level: info
+logging_steps: 10
+lr_scheduler_type: cosine
+max_length: 1024
+max_prompt_length: 512
+num_train_epochs: 1
+optim: paged_adamw_32bit
+output_dir: data/test_run # It is handy to append `hub_model_revision` to keep track of your local experiments
+per_device_train_batch_size: 1
+per_device_eval_batch_size: 1
+push_to_hub: false
+# save_strategy: "steps"
+# save_steps: 400
+save_strategy: "epoch"
+save_total_limit: null
+# save_total_limit: 1
+seed: 42
+warmup_ratio: 0.1
