@@ -1,7 +1,9 @@
 # Noise Contrastive Alignment of Language Models with Explicit Rewards
 <div align="center">
-[![arXiv](https://img.shields.io/badge/arXiv%20paper-2406.06525-b31b1b.svg)](https://arxiv.org/pdf/2402.05369)&nbsp;
-[![Collection](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Collection)](https://huggingface.co/collections/ChenDRAG/noise-contrastive-alignment-model-and-dataset-65c49b9cb25522fdb035a206)&nbsp;
+  
+[![arXiv](https://img.shields.io/badge/arXiv%20paper-2402.05369-b31b1b.svg)](https://arxiv.org/pdf/2402.05369)&nbsp;
+[![demo](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Collection-blue)](https://huggingface.co/collections/ChenDRAG/noise-contrastive-alignment-model-and-dataset-65c49b9cb25522fdb035a206)&nbsp;
+
 </div>
 
 <p align="center">
@@ -19,7 +21,7 @@ In this repo, we release:
 
 ## Update
 - [2024.06] [Dataset](https://huggingface.co/collections/ChenDRAG/noise-contrastive-alignment-model-and-dataset-65c49b9cb25522fdb035a206) and training code is released.
-- [2024.05] The pairwise preference version of NCA has now been supported by [trl](https://github.com/huggingface/trl/blob/cd85b14fbbaf7e4d9b01ef8ec19655666af20047/trl/trainer/dpo_trainer.py#L1135) library.
+- [2024.05] The pairwise preference version of NCA has now been supported by [trl](https://github.com/huggingface/trl) library.
 - [2024.04] NCA algorithm helps empower [Eurus-70B](https://github.com/OpenBMB/Eurus) and [Eurus-8*7B](https://github.com/OpenBMB/Eurus) model, demonstrating significant advantages in complex reasoning tasks compared to the DPO algorithm. Eurus-70B outperformed GPT-3.5-Turbo in a comprehensive benchmark across 12 tests covering five different tasks.
 - [2024.03] Pretrained model [weights](https://huggingface.co/collections/ChenDRAG/noise-contrastive-alignment-model-and-dataset-65c49b9cb25522fdb035a206) are released.
 
@@ -36,7 +38,7 @@ cd trl; pip install -e .
 ```
 
 ### Train
-Before running, please determine your avaliable training device numbers and change `gradient_accumulation_steps` for an approapriate global batch size. We use 8*A40 GPUs and a global batch size of 32 by default. 
+Before running, please determine your avaliable training device numbers and change `gradient_accumulation_steps` for an appropriate global batch size. We use 8*A40 GPUs and a global batch size of 32 by default. 
 
 For aligning with reward dataset, run
 ```
