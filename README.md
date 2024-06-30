@@ -12,6 +12,9 @@
 
 This repo contains training scripts used in
 > [**Noise Contrastive Alignment of Language Models with Explicit Rewards**](https://arxiv.org/pdf/2402.05369)<br>
+<br>
+> Huayu Chen, Guande He, Lifan, Yuan, Ganqu Cui, Hang Su, and Jun Zhu
+> <br>Tsinghua<br>
 
 We enable alignining a pretrained language model with datasets annotated by explicit rewards instead of just binary preferecne by introducing Noise Contrastive Alignment (Figure 1). This framework includes two general algorithms (NCA and InfoNCA) that can deal with both preference data and reward data. Notably, we find that InfoNCA incorporate DPO loss as a special case in binary preference settings. Compared with DPO/InfoNCA, the main advantage of NCA is that it effectively prevents the chosen likelihood from decreasing, a phenomenon commonly observed when applying DPO/InfoNCA loss (Figure 2). 
 
