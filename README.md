@@ -15,14 +15,14 @@ This repo contains training scripts used in
 > Huayu Chen, Guande He, Lifan, Yuan, Ganqu Cui, Hang Su, and Jun Zhu
 > <br>Tsinghua<br>
 
-We enable aligning a pretrained language model with datasets annotated by explicit rewards instead of just binary preference by introducing Noise Contrastive Alignment (Figure 1). This framework includes two general algorithms (NCA and InfoNCA) that can deal with both preference data and reward data. Notably, we find that InfoNCA incorporate DPO loss as a special case in binary preference settings. Compared with DPO/InfoNCA, the main advantage of NCA is that it effectively prevents the chosen likelihood from decreasing, a phenomenon commonly observed when applying DPO/InfoNCA loss (Figure 2). 
+We enable aligning a pretrained language model with datasets annotated by explicit rewards instead of just binary preference by introducing Noise Contrastive Alignment (Figure 1). This framework includes two general algorithms (NCA and InfoNCA) that can deal with both preference data and reward data. Notably, we find that InfoNCA incorporates DPO loss as a special case in binary preference settings. Compared with DPO/InfoNCA, the main advantage of NCA is that it effectively prevents the chosen likelihood from decreasing, a phenomenon commonly observed when applying DPO/InfoNCA loss (Figure 2). 
 
 In this repo, we release:
 * The training scripts of NCA/InfoNCA for aligning Mistral-7B model using [UltraFeedback](https://huggingface.co/datasets/openbmb/UltraFeedback) Dataset.
 * Pretrained model weights.
 
 ## Update
-- [2024.06] [Dataset](https://huggingface.co/collections/ChenDRAG/noise-contrastive-alignment-model-and-dataset-65c49b9cb25522fdb035a206) and training code is released.
+- [2024.06] [Dataset](https://huggingface.co/collections/ChenDRAG/noise-contrastive-alignment-model-and-dataset-65c49b9cb25522fdb035a206) and training code are released.
 - [2024.05] The pairwise preference version of NCA has now been supported by [trl](https://github.com/huggingface/trl) library.
 - [2024.04] NCA algorithm helps empower [Eurus-70B](https://github.com/OpenBMB/Eurus) and [Eurus-8*7B](https://github.com/OpenBMB/Eurus) model, demonstrating significant advantages in complex reasoning tasks compared to the DPO algorithm. Eurus-70B outperformed GPT-3.5-Turbo in a comprehensive benchmark across 12 tests covering five different tasks.
 - [2024.03] Pretrained model [weights](https://huggingface.co/collections/ChenDRAG/noise-contrastive-alignment-model-and-dataset-65c49b9cb25522fdb035a206) are released.
